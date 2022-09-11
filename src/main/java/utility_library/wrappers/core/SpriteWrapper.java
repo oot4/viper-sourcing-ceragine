@@ -45,6 +45,8 @@ public final class SpriteWrapper extends StandardGameWrapper< Spritesheet >
     /**
      * The instance of a {@code SpriteWrapper}
      *
+     * @param gameDataBundle the specified bundle of game data the sprite wrapper should acquire spritesheets from
+     *
      * @return the static instance of {@link SpriteWrapper sprite wrapper}
      *
      * @throws NullPointerException throws an exception if the static instance of the sprite wrapper class could not be initialized

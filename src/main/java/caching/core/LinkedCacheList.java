@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * A class representing a linked list with LRU functionality for caching items
  *
- * @param <T>
+ * @param <T> the type of object that can be stored in this linked cache list
  */
 public final class LinkedCacheList< T > implements DataNodeList< T >
 {

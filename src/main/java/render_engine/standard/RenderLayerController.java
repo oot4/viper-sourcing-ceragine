@@ -247,6 +247,8 @@ public abstract class RenderLayerController implements DrawAPI, Computable, Deli
 
     /**
      * Gets the tracker function of the render layer controller
+     *
+     * @return the updates-per-second and frames-per-second tracker object
      */
     public final Tracker tracker( )
     {

@@ -53,6 +53,8 @@ public final class DebugRoutine extends VariableLoopRoutine implements DebugList
     /**
      * Creates a new instance of a {@code DebugRoutine}
      *
+     * @param debugRate the specified rate at which debug information will be logged
+     *
      * @return a {@code DebugRoutine} object
      */
     public static DebugRoutine newInstance( int debugRate )

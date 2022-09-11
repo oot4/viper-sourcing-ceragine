@@ -23,6 +23,8 @@ public @interface WritableResource
 
     /**
      * The name given to an output file this writable object is written to
+     *
+     * @return a string value containing the writable resource filename
      */
     String filename( ) default "##default";
 
@@ -35,8 +37,10 @@ public @interface WritableResource
 
     /**
      * The current version of the writable object. Example of good version string semantics:
-     * <li>0.1.0</li>
-     * <li>10.2200.1</li>
+     * <ul>
+     *      <li>0.1.0</li>
+     *      <li>10.2200.1</li>
+     * </ul>
      *
      * @return a string value corresponding to the version of the writable object
      */

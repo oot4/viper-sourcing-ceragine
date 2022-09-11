@@ -23,6 +23,10 @@ public interface SingleStateGenerator
      * @param stateChanger the specified state changer the returned instance should use
      *
      * @return a new instance of a state {@link GameState state}
+     *
+     * @throws InvocationTargetException throws an exception if an error occurs when calling the constructor of a game state
+     * @throws InstantiationException    throws an exception when the application tries to instantiate an instance of game state when it cannot be instantiated
+     * @throws IllegalAccessException    throws an exception when the application illegally accesses a method or constructor that is not publicly exposed
      */
     GameState generate( StateChanger stateChanger ) throws InvocationTargetException, InstantiationException, IllegalAccessException;
 
