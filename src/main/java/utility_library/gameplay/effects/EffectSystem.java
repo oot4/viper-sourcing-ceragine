@@ -37,12 +37,12 @@ public final class EffectSystem extends GameSystem
         double result = 0;
         long duration = timer.getDuration( );
         counter( ).setMaxIfGreater( duration );
-        if ( duration > 0 && counter( ).currentFrame( ) > 0 )
+        if ( duration > 0 && counter( ).currentFrame( ) >= 0 )
         {
             long elapsedStartDelay = counter( ).currentFrame( ) % duration;
             long elapsedStartTransition = elapsedStartDelay - timer.getTimer( EffectTimer.START_DELAY_PHASE );
             long elapsedStopTransition = elapsedStartTransition - timer.getTimer( EffectTimer.START_TRANSITION_PHASE );
-            long elapsedStopDelay = elapsedStopTransition - timer.getTimer( EffectTimer.STOP_TRANSITION_PHASE );
+            long elapsedStopDelay = elapsedStopTransition - timer.getTimer( EffectTimer.STOP_DELAY_PHASE );
             if ( timer.isActive( EffectTimer.START_DELAY_PHASE ) && elapsedStartDelay <= timer.getTimer( EffectTimer.START_DELAY_PHASE ) )
             {
                 result = getResult( timer.isReversed( ) , timer.getMaximum( ) , timer.getMinimum( ) );
@@ -78,14 +78,20 @@ public final class EffectSystem extends GameSystem
     {
         SpriteContainer spriteContainer = getEntitySpriteContainer( entity );
         spriteContainer.sprite( ).setAlpha( processEffect( timer ) );
-        if ( counter( ).reachedInterval( timer.getDuration( ) ) && ! timer.isLooped( ) ) { remove( entity , FadeComponent.class ); }
+        if ( counter( ).currentFrame( ) == timer.getDuration( ) && ! timer.isLooped( ) )
+        {
+            remove( entity , FadeComponent.class );
+        }
     }
 
     private void updateScale( String entity , EffectTimer timer )
     {
         SpriteContainer spriteContainer = getEntitySpriteContainer( entity );
         spriteContainer.sprite( ).setScale( processEffect( timer ) );
-        if ( counter( ).reachedInterval( timer.getDuration( ) ) && ! timer.isLooped( ) ) { remove( entity , ResizeComponent.class ); }
+        if ( counter( ).currentFrame( ) == timer.getDuration( ) && ! timer.isLooped( ) )
+        {
+            remove( entity , ResizeComponent.class );
+        }
     }
 
     @Override

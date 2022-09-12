@@ -28,9 +28,9 @@ public final class FadeComponent extends GameComponent
         proxy.setTimer( phase , value );
     }
 
-    public void setAllTimers( long startDelayTimer , long startTransitionTimer , long stopTransitionTimer , long stopDelayTimer )
+    public void setAllTimers( long startDelayTimer , long startTransitionTimer , long stopDelayTimer , long stopTransitionTimer )
     {
-        proxy.setAllTimers( startDelayTimer , startTransitionTimer , stopTransitionTimer , stopDelayTimer );
+        proxy.setAllTimers( startDelayTimer , startTransitionTimer , stopDelayTimer , stopTransitionTimer );
     }
 
     public void deactivate( int phase )

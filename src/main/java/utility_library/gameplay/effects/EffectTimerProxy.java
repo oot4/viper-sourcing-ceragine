@@ -34,9 +34,9 @@ final class EffectTimerProxy
         timer.setTimer( phase , value );
     }
 
-    public void setAllTimers( long startDelayTimer , long startTransitionTimer , long stopTransitionTimer , long stopDelayTimer )
+    public void setAllTimers( long startDelayTimer , long startTransitionTimer , long stopDelayTimer , long stopTransitionTimer )
     {
-        timer.setAllTimers( startDelayTimer , startTransitionTimer , stopTransitionTimer , stopDelayTimer );
+        timer.setAllTimers( startDelayTimer , startTransitionTimer , stopDelayTimer , stopTransitionTimer );
     }
 
     public void deactivate( int phase )

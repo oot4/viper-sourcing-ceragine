@@ -128,12 +128,12 @@ public final class EffectTimer
      * @param stopTransitionTimer  the specified value to set the stop transition phase timer to
      * @param stopDelayTimer       the specified value to set the stop delay phase timer to
      */
-    public void setAllTimers( long startDelayTimer , long startTransitionTimer , long stopTransitionTimer , long stopDelayTimer )
+    public void setAllTimers( long startDelayTimer , long startTransitionTimer , long stopDelayTimer , long stopTransitionTimer )
     {
         setTimer( START_DELAY_PHASE , startDelayTimer );
         setTimer( START_TRANSITION_PHASE , startTransitionTimer );
-        setTimer( STOP_TRANSITION_PHASE , stopTransitionTimer );
         setTimer( STOP_DELAY_PHASE , stopDelayTimer );
+        setTimer( STOP_TRANSITION_PHASE , stopTransitionTimer );
     }
 
     /**
@@ -231,7 +231,7 @@ public final class EffectTimer
      */
     public long getDuration( )
     {
-        return Sum.of( phaseTimers[ START_DELAY_PHASE ] , phaseTimers[ START_TRANSITION_PHASE ] , phaseTimers[ STOP_TRANSITION_PHASE ] , phaseTimers[ STOP_DELAY_PHASE ] );
+        return Sum.of( phaseTimers[ START_DELAY_PHASE ] , phaseTimers[ START_TRANSITION_PHASE ] , phaseTimers[ STOP_DELAY_PHASE ] , phaseTimers[ STOP_TRANSITION_PHASE ] );
     }
 
 }
