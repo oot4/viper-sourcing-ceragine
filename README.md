@@ -121,6 +121,56 @@ public class TestProgram
 
 }
 ```
+Release cerastes-v1.0.0 introduces the new Ceragine data bundle [creator](https://github.com/oot4/viper-sourcing-ceragine/files/9544095/ceragine-data-bundle-creator.zip) which converts 'png' files to 'json', readable by the framework. This tool is required to add assets such as a spritesheet to a game developed with this framework.
+
+1. Extract the data bundle creator
+2. Place 'png' files anywhere in the resource folder (ensure this folder is in the same directory as the resource bundle creator jar)
+3. Run the program
+4. An output json file, titled 'mydatabundle.jsoin' will be created
+5. Place this file in your project directory folder
+6. To use the assets follow example code below
+
+```java
+//example 1 if created json file has default name and extension 'mydatabundle.json'
+
+import resource_manager.writable.core.GameDataBundle;
+
+public class ExampleProgram
+{
+
+    public static void main( String[] args )
+    {
+        //Add the data bundle class to the build process
+        Game.build( new ExampleBundle( ) );
+    }
+
+    private static class ExampleBundle extends GameDataBundle { }
+
+}
+```
+```java
+//example 2 if created json file is renamed to something else. Note that '.json' is the only supported file extension
+
+import resource_manager.writable.api.WritableResource;
+import resource_manager.writable.core.GameDataBundle;
+
+public class ExampleProgram
+{
+
+    public static void main( String[] args )
+    {
+        //Add the data bundle class to the build process
+        Game.build( new ExampleBundle( ) );
+    }
+
+    //Specify the name and extension of the file created by the data bundle creator, must extend game data bundle
+    @WritableResource( filename = "exampledatabundle", extension="json" )
+    private static class ExampleBundle extends GameDataBundle { }
+
+}
+```
+> **_note:_** ```Game.build(GameDataBundle gameDataBundle)``` is always required and must be the first method call. Your initial run will throw an error as there may not be a present compatible ```config.json``` file. This is okay as Ceragine will automatically generate one and all subsequent runs of the program should be successful.
+> The properties in the configuration file mentioned, can be changed to reconfigure the application settings such as debug settings, graphics settings, application version, etc. 
 
 ### Roadmap
 
