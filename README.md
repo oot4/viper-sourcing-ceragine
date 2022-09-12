@@ -126,7 +126,7 @@ Release cerastes-v1.0.0 introduces the new Ceragine data bundle [creator](https:
 1. Extract the data bundle creator
 2. Place 'png' files anywhere in the resource folder (ensure this folder is in the same directory as the resource bundle creator jar)
 3. Run the program
-4. An output json file, titled 'mydatabundle.jsoin' will be created
+4. An output json file, titled 'mydatabundle.json' will be created
 5. Place this file in your project directory folder
 6. To use the assets follow example code below
 
@@ -164,7 +164,7 @@ public class ExampleProgram
     }
 
     //Specify the name and extension of the file created by the data bundle creator, must extend game data bundle
-    @WritableResource( filename = "exampledatabundle", extension="json" )
+    @WritableResource( filename = "exampledatabundle" )
     private static class ExampleBundle extends GameDataBundle { }
 
 }
