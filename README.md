@@ -121,7 +121,7 @@ public class TestProgram
 
 }
 ```
-Release cerastes-v1.0.0 introduces the new Ceragine data bundle [creator](https://github.com/oot4/viper-sourcing-ceragine/files/9544095/ceragine-data-bundle-creator.zip) which converts 'png' files to 'json', readable by the framework. This tool is required to add assets such as a spritesheet to a game developed with this framework.
+Release cerastes-v0.4.5-alpha introduces the new Ceragine data bundle [creator](https://github.com/oot4/viper-sourcing-ceragine/files/9544095/ceragine-data-bundle-creator.zip) which converts 'png' files to 'json', readable by the framework. This tool is required to add assets such as a spritesheet to a game developed with this framework.
 
 1. Extract the data bundle creator
 2. Place 'png' files anywhere in the resource folder (ensure this folder is in the same directory as the resource bundle creator jar)
