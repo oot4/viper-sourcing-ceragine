@@ -20,7 +20,7 @@
         <dependency>
             <groupId>viper.sourcing</groupId>
             <artifactId>viper-sourcing-ceragine</artifactId>
-            <version>1.0.0</version>
+            <version>0.4.5-alpha</version>
         </dependency>
     </dependencies>
 
@@ -87,10 +87,6 @@
     <inceptionYear>2022</inceptionYear>
     <licenses>
         <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
     <organization>
