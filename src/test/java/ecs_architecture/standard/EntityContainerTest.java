@@ -45,8 +45,8 @@ public class EntityContainerTest extends TestCase
             assertEquals( 1 , entitiesSet.size( ) );
             Field maxField = EntityContainer.class.getDeclaredField( "max" );
             maxField.setAccessible( true );
-            maxField.set( test , 2048 );
-            for ( int i = 0; i < 2047; i++ )
+            maxField.set( test , 4194304 );
+            for ( int i = 0; i < 4194303; i++ )
             {
                 emptySet.add( String.valueOf( i ) );
             }
