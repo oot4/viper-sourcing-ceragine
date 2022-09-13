@@ -75,7 +75,7 @@ abstract class EntityContainer implements GameplayAPI
     {
         if ( entities.size( ) == max )
         {
-            if ( max == 2048 )
+            if ( max == 4194304 )
             {
                 GameDebugger.log( Alert.DIRE , "Max number of entities reached, clear some unused entities" );
                 throw new IndexOutOfBoundsException( "Max number of entities reached, clear some unused entities" );
