@@ -14,7 +14,7 @@
     <!-- Basic Info -->
     <groupId>viper.sourcing</groupId>
     <artifactId>viper-sourcing-ceragine</artifactId>
-    <version>0.4.5-alpha</version>
+    <version>0.4.6-alpha</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -26,12 +26,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.13.3</version>
+            <version>2.13.4</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.3</version>
+            <version>2.13.4</version>
         </dependency>
     </dependencies>
     <!-- "<parent/>" -->

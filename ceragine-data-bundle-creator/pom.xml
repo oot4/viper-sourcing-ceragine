@@ -20,7 +20,7 @@
         <dependency>
             <groupId>viper.sourcing</groupId>
             <artifactId>viper-sourcing-ceragine</artifactId>
-            <version>0.4.5-alpha</version>
+            <version>0.4.6-alpha</version>
         </dependency>
     </dependencies>
 

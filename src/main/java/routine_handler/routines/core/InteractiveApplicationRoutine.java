@@ -108,8 +108,8 @@ public final class InteractiveApplicationRoutine extends VariableLoopRoutine
         long duration = 0L;
         if ( milliseconds > 0L )
         {
-            long divisor = RoutineClock.MICRO_CONVERSION_FACTOR * milliseconds;
-            duration = ( long ) Quotient.toDouble( getClock( ).getModifier( ) , divisor );
+            double dividend = Quotient.toDouble( getClock( ).getFpsModifier( ) , RoutineClock.MICRO_CONVERSION_FACTOR );
+            duration = ( long ) ( dividend * milliseconds );
         }
         long executionTime = getCycle( ) + duration;
         actions.add( new RoutineAction( executionTime , computable ) );
