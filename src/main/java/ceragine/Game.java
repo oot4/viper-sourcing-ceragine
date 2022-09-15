@@ -321,7 +321,7 @@ public final class Game
     /**
      * Informs the routine to terminate
      */
-    private static void exit( )
+    public static void exit( )
     {
         game( ).debugger.exitLoop( );
         game( ).responder.exitLoop( );
