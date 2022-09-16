@@ -76,6 +76,10 @@ public final class AnimationSystem extends GameSystem
             {
                 int index = animation.index( );
                 spriteContainer.sprite( ).replaceTiles( Objects.requireNonNull( animation.sprite( ) ).tiles( ) );
+                spriteContainer.sprite( ).replaceMirrored( Objects.requireNonNull( animation.sprite( ) ).mirrored( ) );
+                spriteContainer.sprite( ).offset( ).setLocation( Objects.requireNonNull( animation.sprite( ) ).offset( ) );
+                spriteContainer.sprite( ).setAlpha( Objects.requireNonNull( animation.sprite( ) ).alpha( ) );
+                spriteContainer.sprite( ).setScale( Objects.requireNonNull( animation.sprite( ) ).scale( ) );
                 if ( animation.index( ) >= animation.size( ) - 1 )
                 {
                     index = getNewIndex( animation );
