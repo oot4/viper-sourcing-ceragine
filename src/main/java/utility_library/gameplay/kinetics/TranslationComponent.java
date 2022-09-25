@@ -9,6 +9,8 @@ import java.awt.geom.Point2D;
 public final class TranslationComponent extends GameComponent
 {
 
+    private final Point2D lastLocation;
+
     private final Point2D location;
 
     private final Point2D speed;
@@ -18,12 +20,14 @@ public final class TranslationComponent extends GameComponent
         super( name );
         this.location = new Point2D.Double( );
         this.speed = new Point2D.Double( );
+        lastLocation = new Point2D.Double( );
     }
 
     private TranslationComponent( Point2D location , Point2D speed )
     {
         this.location = location;
         this.speed = speed;
+        lastLocation = location;
     }
 
     public static TranslationComponent from( String name )
@@ -51,6 +55,7 @@ public final class TranslationComponent extends GameComponent
     public void setX( double x )
     {
         double y = location.getY( );
+        lastLocation.setLocation( location );
         location.setLocation( x , y );
     }
 
@@ -62,7 +67,18 @@ public final class TranslationComponent extends GameComponent
     public void setY( double y )
     {
         double x = location.getX( );
+        lastLocation.setLocation( location );
         location.setLocation( x , y );
+    }
+
+    public double getLastX( )
+    {
+        return lastLocation.getX( );
+    }
+
+    public double getLastY( )
+    {
+        return lastLocation.getY( );
     }
 
     public double getSX( )
@@ -87,6 +103,7 @@ public final class TranslationComponent extends GameComponent
 
     public void setLocation( double x , double y )
     {
+        lastLocation.setLocation( location );
         location.setLocation( x , y );
     }
 
@@ -121,24 +138,28 @@ public final class TranslationComponent extends GameComponent
 
     public void moveLeft( )
     {
+        lastLocation.setLocation( location );
         double x = location.getX( ) - vx( );
         setX( x );
     }
 
     public void moveRight( )
     {
+        lastLocation.setLocation( location );
         double x = location.getX( ) + vx( );
         setX( x );
     }
 
     public void moveDown( )
     {
+        lastLocation.setLocation( location );
         double y = location.getY( ) - vy( );
         setY( y );
     }
 
     public void moveUp( )
     {
+        lastLocation.setLocation( location );
         double y = location.getY( ) + vy( );
         setY( y );
     }
