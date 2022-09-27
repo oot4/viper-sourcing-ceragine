@@ -80,6 +80,7 @@ Ceragine is also the successor of a previous prototype called Triumph 2D. Triump
 ### Prerequisites
 
 The recommended method to install **Ceragine** is to use Maven to build and include Ceragine as a dependency after downloading the Ceragine source files. This will work as long as Maven and Java are installed.
+The latest release is hosted here on github, download it from the projects release page
 
 ```shell
 mvn clean install
