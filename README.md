@@ -62,7 +62,7 @@ Key features of **Ceragine**:
 
 Ceragine is the result of a dissertation project which initially tried to explore the use of behavioural artificial intelligence in games with multiple agents. The focus however, shifted due to some hurdles encountered during the development of that project where it was apparent that a novel approach to gameplay was required.
 
-Ceragine is also the successor of a previous prototype called Triumph 2D. Triumph 2D pioneered the research in to the use of an entity-component-system architecture and provide an experimenting ground for testing the limits of the new concept
+Ceragine is also the successor of a previous prototype called Triumph 2D. Triumph 2D pioneered the research in to the use of an entity-component-system architecture and provided an experimenting ground for testing the limits of the new concept
 
 </details>
 
@@ -82,11 +82,15 @@ Ceragine is also the successor of a previous prototype called Triumph 2D. Triump
 The recommended method to install **Ceragine** is to use Maven to build and include Ceragine as a dependency after downloading the Ceragine source files. This will work as long as Maven and Java are installed.
 The latest release is hosted here on github, download it from the projects release page
 
+Visit the maven homepage and get the latest release or install Maven through your chosen IDE
+
+- load the ceragine source files in your IDE as a maven project
+- run the following command within the directory of the pom of the project to build and add Ceragine to the local repo
+- create a new project and include the Ceragine dependency
+
 ```shell
 mvn clean install
 ```
-Visit the maven homepage and get the latest release or install Maven through your chosen IDE
-
 ### Usage
 
 #### Ceragine
@@ -99,7 +103,7 @@ After installing the ceragine build locally with the command above, specify the 
     <dependency>
         <groupId>viper.sourcing</groupId>
         <artifactId>viper-sourcing-ceragine</artifactId>
-        <version>1.0.0</version>
+        <version>{LATEST_RELEASE_VERSION}</version>
     </dependency>
 </dependencies>
 ```
@@ -121,7 +125,7 @@ public class TestProgram
 
 }
 ```
-Release cerastes-v0.4.5-alpha introduces the new Ceragine data bundle [creator](https://github.com/oot4/viper-sourcing-ceragine/files/9544095/ceragine-data-bundle-creator.zip) which converts 'png' files to 'json', readable by the framework. This tool is required to add assets such as a spritesheet to a game developed with this framework.
+Release cerastes-v0.4.7-alpha introduces the new Ceragine data bundle [creator](https://github.com/oot4/viper-sourcing-ceragine/files/9544095/ceragine-data-bundle-creator.zip) which converts 'png' files to 'json', readable by the framework. This tool is required to add assets such as a spritesheet to a game developed with this framework.
 
 1. Extract the data bundle creator
 2. Place 'png' files anywhere in the resource folder (ensure this folder is in the same directory as the resource bundle creator jar)
