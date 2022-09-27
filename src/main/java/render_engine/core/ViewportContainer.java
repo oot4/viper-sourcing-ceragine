@@ -23,6 +23,11 @@ public final class ViewportContainer implements ViewportPositionValidator
     private final double height;
 
     /**
+     * Render scaling
+     */
+    private final float scale;
+
+    /**
      * Location where the viewport is centered
      */
     private final Point2D centering;
@@ -37,11 +42,13 @@ public final class ViewportContainer implements ViewportPositionValidator
      *
      * @param width  the specified width of the viewport area
      * @param height the specified height of the viewport area
+     * @param scale  the specified scaling applied to the viewport dimensions
      */
-    private ViewportContainer( double width , double height )
+    private ViewportContainer( double width , double height , float scale )
     {
         this.width = width;
         this.height = height;
+        this.scale = scale;
         this.centering = new Point2D.Double( );
         viewport = new Rectangle2D.Double( );
     }
@@ -58,7 +65,7 @@ public final class ViewportContainer implements ViewportPositionValidator
     {
         double width = resolution.getWidth( ) / scale;
         double height = resolution.getHeight( ) / scale;
-        return new ViewportContainer( width , height );
+        return new ViewportContainer( width , height , scale );
     }
 
     /**
@@ -137,6 +144,15 @@ public final class ViewportContainer implements ViewportPositionValidator
     {
         Point2D point = getViewportPosition( offset , x , y , size );
         return viewport.intersects( point.getX( ) , point.getY( ) , size , size );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public float getRenderScale( )
+    {
+        return scale;
     }
 
 }

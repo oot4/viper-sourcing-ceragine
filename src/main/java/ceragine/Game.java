@@ -191,6 +191,16 @@ public final class Game
     }
 
     /**
+     * Adds a shape to be drawn to the viewport area
+     *
+     * @param shape the specified shape to draw
+     */
+    public static void drawOutline( Shape shape )
+    {
+        game( ).renderer.drawOutline( shape );
+    }
+
+    /**
      * Sets the offset of rendered tile images
      *
      * @param x the specified value {@code x} to offset rendered tile images by

@@ -11,6 +11,8 @@ import utility_library.algorithms.api.Computable;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static render_engine.core.RenderLayer.TILE_SIZE;
 
@@ -106,6 +108,16 @@ public abstract class RenderLayerController implements DrawAPI, Computable, Deli
     private ViewportPositionValidator viewportPositionValidator;
 
     /**
+     * Queue of outline render tasks
+     */
+    private final Set< Computable > outlineRenderQueue = ConcurrentHashMap.newKeySet( );
+
+    /**
+     * Shape outlines to render
+     */
+    private final Set< Shape > outlines = ConcurrentHashMap.newKeySet( );
+
+    /**
      * Default constructor for creating a new {@code RenderLayerController}
      *
      * @param offset the specified offset used by the layers in the controller
@@ -169,6 +181,79 @@ public abstract class RenderLayerController implements DrawAPI, Computable, Deli
     }
 
     /**
+     * Draws a single outline to the graphics object
+     *
+     * @param gfx    the specified graphics object to draw to
+     * @param shape  the specified shape of the outline to draw
+     * @param stroke the specified stroke settings used when drawing
+     */
+    private void drawOutline( Graphics2D gfx , Shape shape , Stroke stroke )
+    {
+        if ( shape == null )
+        {
+            return;
+        }
+        Stroke current = gfx.getStroke( );
+        gfx.setStroke( stroke );
+        gfx.draw( shape );
+        gfx.setStroke( current );
+    }
+
+    /**
+     * Draws a single outline to the graphics object
+     *
+     * @param gfx       the specified graphics object to draw to
+     * @param shape     the specified shape of the outline to draw
+     * @param transform the specified transformation to apply to the shape
+     * @param stroke    the specified stroke settings used when drawing
+     */
+    private void drawOutline( Graphics2D gfx , Shape shape , AffineTransform transform , Stroke stroke )
+    {
+        if ( transform == null )
+        {
+            drawOutline( gfx , shape , stroke );
+            return;
+        }
+        drawOutline( gfx , transform.createTransformedShape( shape ) , stroke );
+    }
+
+    /**
+     * Draws the stored outlines to the viewport area
+     *
+     * @param gfx      the specified graphics object to draw to
+     * @param viewport the specified bounds of the viewport in to the game
+     */
+    private void drawOutlines( Graphics2D gfx , Rectangle2D viewport )
+    {
+        gfx.setColor( Color.GREEN );
+        Stroke stroke = new BasicStroke( 1 / viewportPositionValidator.getRenderScale( ) );
+        outlines.forEach( shape -> {
+            if ( shape != null )
+            {
+                Object hint = gfx.getRenderingHint( RenderingHints.KEY_ANTIALIASING );
+                gfx.setRenderingHint( RenderingHints.KEY_ANTIALIASING , RenderingHints.VALUE_ANTIALIAS_OFF );
+                double anchorX = shape.getBounds( ).getX( ) + shape.getBounds( ).getWidth( ) * 0.5D;
+                double anchorY = shape.getBounds( ).getY( ) + shape.getBounds( ).getHeight( ) * 0.5D;
+                AffineTransform transform = new AffineTransform( );
+                transform.translate( - viewport.getX( ) , - viewport.getY( ) );
+                transform.rotate( Math.toRadians( 0 ) , anchorX , anchorY );
+                drawOutline( gfx , shape , transform , stroke );
+                gfx.setRenderingHint( RenderingHints.KEY_ANTIALIASING , hint );
+            }
+        } );
+    }
+
+    /**
+     * Adds a shape to be drawn to the viewport area
+     *
+     * @param shape the specified shape to draw
+     */
+    public final void drawOutline( Shape shape )
+    {
+        outlineRenderQueue.add( ( ) -> outlines.add( shape ) );
+    }
+
+    /**
      * Sets the offset of images when they are rendered
      *
      * @param x the specified value {@code x} to offset tile images by
@@ -185,6 +270,8 @@ public abstract class RenderLayerController implements DrawAPI, Computable, Deli
     public final void clear( )
     {
         layer.clear( );
+        outlines.clear( );
+        outlineRenderQueue.clear( );
     }
 
     /**
@@ -208,6 +295,7 @@ public abstract class RenderLayerController implements DrawAPI, Computable, Deli
             gfx.fill( new Rectangle2D.Double( 0.0D , 0.0D , viewport.getWidth( ) , viewport.getHeight( ) ) );
             start = System.nanoTime( );
             layer.deliver( gfx , viewport , offset , viewportPositionValidator );
+            drawOutlines( gfx , viewport );
         }
         finally
         {
@@ -242,6 +330,7 @@ public abstract class RenderLayerController implements DrawAPI, Computable, Deli
     {
         long start = System.nanoTime( );
         layer.compute( );
+        outlineRenderQueue.forEach( Computable::compute );
         computeTime = System.nanoTime( ) - start;
     }
 

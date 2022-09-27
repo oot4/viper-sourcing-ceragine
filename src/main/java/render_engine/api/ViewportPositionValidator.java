@@ -33,4 +33,11 @@ public interface ViewportPositionValidator
      */
     boolean intersects( Point offset , double x , double y , int size );
 
+    /**
+     * Gets the render scaling applied to the game and viewport
+     *
+     * @return a scaling value applied to the viewport width and height
+     */
+    float getRenderScale( );
+
 }
