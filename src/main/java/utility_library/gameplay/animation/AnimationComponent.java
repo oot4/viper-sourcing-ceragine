@@ -5,7 +5,8 @@ import utility_library.gameplay.rendering.api.SpriteContainer;
 import utility_library.structures.Animation;
 import utility_library.structures.Sprite;
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class AnimationComponent extends GameComponent implements SpriteContainer
 {
@@ -24,7 +25,7 @@ public final class AnimationComponent extends GameComponent implements SpriteCon
 
     private boolean stopLoop;
 
-    private final HashMap< String, Animation > animations = new HashMap<>( );
+    private final Map< String, Animation > animations = new ConcurrentHashMap<>( );
 
     private AnimationComponent( )
     {
@@ -146,7 +147,14 @@ public final class AnimationComponent extends GameComponent implements SpriteCon
         Animation animation = animations.getOrDefault( currentAnimation , null );
         if ( animation != null )
         {
-            return animation.sprite( index );
+            if ( index < animation.size( ) )
+            {
+                return animation.sprite( index );
+            }
+            else
+            {
+                return animation.sprite( 0 );
+            }
         }
         return null;
     }
